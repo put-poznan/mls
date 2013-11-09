@@ -5,6 +5,7 @@ typedef struct options {
   int all;
   int long_format;
   int reverse;
+  const char* path;
 } options;
 
 int parse_opts(int argc, char *argv[], options* opts);

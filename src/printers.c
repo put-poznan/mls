@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 #include <sys/types.h>
@@ -35,17 +36,25 @@ char *filemode(mode_t mode, char buff[10]) {
   return buff;
 }
 
-void default_format(struct dirent *name) {
+void default_format(struct dirent *name, options _) {
   puts(name->d_name);
 }
 
-void long_format(struct dirent *name) {
+void long_format(struct dirent *name, options opts) {
   struct stat stats;
   struct passwd *user;
   struct group  *group;
-  char buff[10] = {0}, time[100];
+  char perm[10] = {0}, time[100], *filepath;
+  int filepath_l = 0;
 
-  lstat(name->d_name, &stats);
+  filepath_l = strlen(name->d_name) + strlen(opts.path);
+  filepath = (char*)malloc(filepath_l + 10);
+
+  strcpy(filepath, opts.path);
+  strcat(filepath, "/");
+  strcat(filepath, name->d_name);
+
+  lstat(filepath, &stats);
   user = getpwuid(stats.st_uid);
   group = getgrgid(stats.st_gid);
 
@@ -53,7 +62,7 @@ void long_format(struct dirent *name) {
 
   printf("%c%s %3d %s %s %5u %s %s\n",
       filetype(stats.st_mode),       /* filetype */
-      filemode(stats.st_mode, buff), /* permissions */
+      filemode(stats.st_mode, perm), /* permissions */
       stats.st_nlink,                /* hard links */
       user->pw_name,                 /* user name */
       group->gr_name,                /* group name */

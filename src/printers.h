@@ -3,9 +3,11 @@
 
 #include <dirent.h>
 
-typedef void (*formatter_t)(struct dirent *);
+#include "option_parse.h"
 
-void default_format(struct dirent *name);
-void long_format(struct dirent *name);
+typedef void (*formatter_t)(struct dirent *, options);
+
+void default_format(struct dirent *name, options);
+void long_format(struct dirent *name, options);
 
 #endif /* _PRINTERS_H */

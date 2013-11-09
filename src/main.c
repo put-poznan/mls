@@ -14,7 +14,6 @@ typedef int (*sorter_t)(struct dirent **, struct dirent **);
 int main(int argc, char* argv[]) {
   struct dirent **namelist;
   int dirs_count, opts_count, i;
-  const char *dir = ".";
   options opts;
 
   formatter_t formatters[] = {
@@ -33,12 +32,13 @@ int main(int argc, char* argv[]) {
   };
 
   opts_count = parse_opts(argc, argv, &opts);
+  opts.path = ".";
 
   if (opts_count < argc) {
-    dir = argv[1];
+    opts.path = argv[opts_count];
   }
 
-  dirs_count = scandir(dir, &namelist, filters[opts.all], alphasort);
+  dirs_count = scandir(opts.path, &namelist, filters[opts.all], alphasort);
 
   if (dirs_count < 0) {
     perror("mls");
@@ -46,7 +46,8 @@ int main(int argc, char* argv[]) {
     listers[opts.reverse](
         namelist,
         dirs_count,
-        formatters[opts.long_format]
+        formatters[opts.long_format],
+        opts
         );
     free(namelist);
   }

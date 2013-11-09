@@ -22,7 +22,7 @@ int parse_opts(int argc, char *argv[], options* opts) {
         opts->reverse = 1;
         break;
       default:
-        printf("Usage: %s [-alr] [directory]", argv[0]);
+        printf("Usage: %s [-alr] [directory]\n", argv[0]);
         exit(1);
     }
   }

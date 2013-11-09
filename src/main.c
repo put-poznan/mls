@@ -42,6 +42,8 @@ int main(int argc, char* argv[]) {
 
   if (dirs_count < 0) {
     perror("mls");
+
+    return 1;
   } else {
     listers[opts.reverse](
         namelist,
@@ -51,4 +53,6 @@ int main(int argc, char* argv[]) {
         );
     free(namelist);
   }
+
+  return 0;
 }

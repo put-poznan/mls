@@ -23,3 +23,7 @@ Program that is simple `ls` implementation.
 ## License
 
 See `LICENSE` file.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/put-poznan/mls/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

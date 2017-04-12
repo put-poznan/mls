@@ -1,6 +1,6 @@
 CC ?= cc
 
-CFLAGS = -Wall -pedantic
+CFLAGS = -Wall -pedantic -O3
 LDFLAGS =
 
 SRC = $(wildcard src/*.c)

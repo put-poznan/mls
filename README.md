@@ -4,13 +4,11 @@ Program that is simple `ls` implementation.
 
 ## Requirements
 
-- CMake
 - Any C compiler that accept valid C89 code
 - \*NIX system
 
 ## Compilation and run
 
-    cmake .
     make
     ./bin/mls
 
@@ -23,7 +21,3 @@ Program that is simple `ls` implementation.
 ## License
 
 See `LICENSE` file.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/put-poznan/mls/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
